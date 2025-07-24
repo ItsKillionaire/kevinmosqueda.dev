@@ -22,3 +22,9 @@ body {
 h1, h2, h3 {
   font-family: var(--font-serif);
 }
+
+#projects-overlay.is-open .card {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--index) * 0.07s);
+}

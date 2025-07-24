@@ -14,7 +14,7 @@ const sortedProjects = allProjects;
       <h2>MY_PROJECTS/</h2>
     </div>
     <div class="projects-grid">
-      {sortedProjects.map(project => (
+      {sortedProjects.map((project, index) => (
         <ProjectCard
           name={project.repo}
           description={String(project.description || '').trim()}
@@ -22,11 +22,55 @@ const sortedProjects = allProjects;
           language={String(project.language || 'N/A').trim()}
           languageColor={project.languageColor || '#000000'}
           image={project.image}
+          index={index}
         />
       ))}
     </div>
   </div>
 </aside>
+<script is:inline>
+  const overlay = document.getElementById('projects-overlay');
+  const openBtn = document.getElementById('open-projects-btn');
+  const closeBtn = document.getElementById('close-projects-btn');
+
+  function openOverlay() {
+    overlay.classList.add('is-open');
+    openBtn.classList.add('is-active');
+  }
+
+  function closeOverlay() {
+    overlay.classList.remove('is-open');
+    openBtn.classList.remove('is-active');
+  }
+
+  if (openBtn && closeBtn && overlay) {
+    openBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (overlay.classList.contains('is-open')) {
+        closeOverlay();
+      } else {
+        openOverlay();
+      }
+    });
+
+    closeBtn.addEventListener('click', closeOverlay);
+
+    document.addEventListener('click', (e) => {
+      if (overlay.classList.contains('is-open') && !overlay.contains(e.target)) {
+        closeOverlay();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+        closeOverlay();
+      }
+    });
+  }
+</script>
+
+
+
 <style>
   #projects-overlay {
     position: fixed;

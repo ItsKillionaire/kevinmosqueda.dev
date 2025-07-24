@@ -6,10 +6,11 @@ export interface Props {
   language: string;
   languageColor: string;
   image: string;
+  index: number;
 }
-const { name, description, url, language, languageColor, image } = Astro.props;
+const { name, description, url, language, languageColor, image, index } = Astro.props;
 ---
-<a href={url} target="_blank" rel="noopener noreferrer" class="card">
+<a href={url} target="_blank" rel="noopener noreferrer" class="card" style={`--index: ${index};`}>
   <img src={image} alt={`Social preview for ${name}`} class="card-img"/>
   <div class="card-content">
     <h3 class="card-title">{name}</h3>
@@ -26,10 +27,15 @@ const { name, description, url, language, languageColor, image } = Astro.props;
     text-decoration: none;
     color: var(--text-color);
     background-color: var(--bg-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
+
+  
+
   .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.02);
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
   }
   .card-img {
@@ -47,13 +53,6 @@ const { name, description, url, language, languageColor, image } = Astro.props;
     font-family: var(--font-serif);
     font-size: 1.5rem;
     margin: 0 0 0.5rem 0;
-  }
-  .card-description {
-    font-family: var(--font-sans-serif);
-    font-size: 1rem;
-    line-height: 1.5;
-    margin: 0 0 1rem 0;
-    min-height: 4.5em;
   }
   .card-description {
     font-family: var(--font-sans-serif);
