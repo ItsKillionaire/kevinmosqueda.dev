@@ -1,0 +1,121 @@
+---
+---
+<section class="hero">
+  <div class="background-text" aria-hidden="true">INNOVATE</div>
+  <div class="hero-content">
+    <div class="title-container">
+      <span class="asterisk">*</span>
+      <h1>HI, I'M<br/>KEVIN MOSQUEDA</h1>
+    </div>
+    <div class="portrait-container">
+      <img src="/images/kevin-portrait.png" alt="Kevin Mosqueda portrait" class="portrait-img"/>
+      <div class="accent-shape"></div>
+    </div>
+  </div>
+</section>
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10vh;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    overflow: hidden;
+  }
+  .background-text {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-sans-serif);
+    font-size: clamp(6rem, 25vw, 20rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-color);
+    text-stroke: 1px var(--text-color);
+    opacity: 0.08;
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+  }
+  .title-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 10;
+    position: relative;
+  }
+  .title-container h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 800;
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--text-color);
+  }
+  .asterisk {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--accent-color);
+    line-height: 1;
+    align-self: flex-start;
+  }
+  .portrait-container {
+    position: relative;
+    width: clamp(220px, 30vw, 340px);
+    height: clamp(300px, 20vw, 400px);
+    margin-top: -5rem;
+    z-index: 5;
+  }
+  .portrait-img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(-8deg);
+    width: 85%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    filter: grayscale(100%);
+    z-index: 2;
+    border-radius: 20px 20px 40px 40px;
+  }
+  .accent-shape {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-8deg);
+    width: 85%;
+    height: 70%;
+    background-color: var(--accent-color);
+    border-radius: 20px 20px 40px 40px;
+    z-index: 1;
+  }
+  
+  .portrait-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: inherit;
+    z-index: -1;
+  }
+</style>
