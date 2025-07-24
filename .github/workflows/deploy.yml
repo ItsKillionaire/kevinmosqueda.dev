@@ -54,7 +54,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} ${{ steps.detect-package-manager.outputs.command }}
 
       - name: Build with Astro
-        run: ${{ steps.detect-package-manager.outputs.runner }} astro build
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: actions/upload-pages-artifact@v3
