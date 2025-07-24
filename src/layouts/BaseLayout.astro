@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ProjectsOverlay from '../components/ProjectsOverlay.astro';
 
 interface Props {
 	title: string;
@@ -19,5 +20,42 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<slot />
+		<ProjectsOverlay />
+		<script>
+      const openBtn = document.getElementById('open-projects-btn');
+      const closeBtn = document.getElementById('close-projects-btn');
+      const overlay = document.getElementById('projects-overlay');
+
+      function closeOverlay() {
+        overlay.classList.remove('is-open');
+        openBtn.classList.remove('is-active');
+      }
+
+      if (openBtn && closeBtn && overlay) {
+        openBtn.addEventListener('click', (event) => {
+          event.stopPropagation(); // prevent click from bubbling up to the document
+          const isOpen = overlay.classList.toggle('is-open');
+          openBtn.classList.toggle('is-active', isOpen);
+        });
+
+        closeBtn.addEventListener('click', () => {
+          closeOverlay();
+        });
+
+        // Close overlay when clicking outside of it
+        document.addEventListener('click', (event) => {
+          if (overlay.classList.contains('is-open') && !overlay.contains(event.target)) {
+            closeOverlay();
+          }
+        });
+
+        // Close overlay with the 'Escape' key
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && overlay.classList.contains('is-open')) {
+            closeOverlay();
+          }
+        });
+      }
+    </script>
 	</body>
 </html>

@@ -1,13 +1,19 @@
 ---
-const { repo } = Astro.props;
-const placeholderUrl = `https://placehold.co/600x400/F1EEEB/1D1D1B?text=${repo.name.replace(/[-_]/g, '%20')}`;
+export interface Props {
+  name: string;
+  description: string;
+  url: string;
+  language: string;
+  image: string;
+}
+const { name, description, url, language, image } = Astro.props;
 ---
-<a href={repo.html_url} target="_blank" rel="noopener noreferrer" class="card">
-  <img src={placeholderUrl} alt={`Placeholder for ${repo.name}`} class="card-img"/>
+<a href={url} target="_blank" rel="noopener noreferrer" class="card">
+  <img src={image} alt={`Social preview for ${name}`} class="card-img"/>
   <div class="card-content">
-    <h3 class="card-title">{repo.name}</h3>
-    <p class="card-description">{repo.description || 'No description available.'}</p>
-    <span class="card-language">{repo.language}</span>
+    <h3 class="card-title">{name}</h3>
+    <p class="card-description">{description || 'No description available.'}</p>
+    <span class="card-language">{language}</span>
   </div>
 </a>
 

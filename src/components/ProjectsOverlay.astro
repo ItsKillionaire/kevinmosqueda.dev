@@ -1,0 +1,121 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+// Fetch all pinned projects
+const response = await fetch('https://gh-pinned-repos.egoist.dev/?username=ItsKillionaire');
+const allProjects = await response.json();
+
+let sortedProjects = [];
+if (Array.isArray(allProjects)) {
+  // Define the exact order and names of projects to display
+  const desiredProjectsOrder = ['TradeSignalFlux', 'Point_of_sale_app', 'Pizzapopan', 'kevinmosqueda.dev'];
+
+  // Filter the fetched projects to only include the ones we want
+  const filteredProjects = allProjects.filter(project => 
+    desiredProjectsOrder.map(p => p.toLowerCase()).includes(project.repo.toLowerCase())
+  );
+
+  // Sort the filtered projects according to the desired order
+  sortedProjects = filteredProjects.sort((a, b) => {
+    return desiredProjectsOrder.indexOf(a.repo) - desiredProjectsOrder.indexOf(b.repo);
+  });
+}
+---
+<aside id="projects-overlay">
+  <div class="overlay-content">
+    <button id="close-projects-btn" title="Close">&times;</button>
+    <h2>MY_PROJECTS/</h2>
+    <div class="projects-grid">
+      {sortedProjects.map(project => (
+        <ProjectCard
+          name={project.repo}
+          description={project.description}
+          url={project.link}
+          language={project.language}
+          image={project.image}
+        />
+      ))}
+    </div>
+  </div>
+</aside>
+<style>
+  #projects-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: clamp(320px, 40vw, 500px);
+    
+    /* Glassmorphism Effect */
+    background-color: rgba(241, 238, 235, 0.5); /* Use --bg-color with alpha */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 100;
+    
+    border-left: 1px solid rgba(29, 29, 27, 0.1); /* Subtle border */
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  }
+
+  #projects-overlay.is-open {
+    transform: translateX(0);
+  }
+
+  .overlay-content {
+    height: 100%;
+    overflow-y: auto;
+    padding: 2.5rem;
+  }
+
+  /* Custom scrollbar for the overlay */
+  .overlay-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  .overlay-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .overlay-content::-webkit-scrollbar-thumb {
+    background-color: rgba(29, 29, 27, 0.2);
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+   .overlay-content::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(29, 29, 27, 0.4);
+  }
+
+  #close-projects-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--text-color);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  #close-projects-btn:hover {
+    opacity: 1;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 800;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    color: var(--text-color);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+</style>
