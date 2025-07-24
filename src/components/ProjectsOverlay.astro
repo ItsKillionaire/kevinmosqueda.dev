@@ -2,36 +2,25 @@
 import ProjectCard from './ProjectCard.astro';
 
 // Fetch all pinned projects
-const response = await fetch('https://gh-pinned-repos.egoist.dev/?username=ItsKillionaire');
-const allProjects = await response.json();
+const response = await fetch('https://pinned.berrysauce.dev/get/ItsKillionaire');
+const allProjects = (await response.json()).map(p => ({...p, repo: p.name.trim(), link: `https://github.com/${p.author}/${p.name}`, image: `https://opengraph.githubassets.com/1/${p.author}/${p.name}`, language: p.language, languageColor: p.languageColor}));
 
-let sortedProjects = [];
-if (Array.isArray(allProjects)) {
-  // Define the exact order and names of projects to display
-  const desiredProjectsOrder = ['TradeSignalFlux', 'Point_of_sale_app', 'Pizzapopan', 'kevinmosqueda.dev'];
-
-  // Filter the fetched projects to only include the ones we want
-  const filteredProjects = allProjects.filter(project => 
-    desiredProjectsOrder.map(p => p.toLowerCase()).includes(project.repo.toLowerCase())
-  );
-
-  // Sort the filtered projects according to the desired order
-  sortedProjects = filteredProjects.sort((a, b) => {
-    return desiredProjectsOrder.indexOf(a.repo) - desiredProjectsOrder.indexOf(b.repo);
-  });
-}
+const sortedProjects = allProjects;
 ---
 <aside id="projects-overlay">
   <div class="overlay-content">
     <button id="close-projects-btn" title="Close">&times;</button>
-    <h2>MY_PROJECTS/</h2>
+    <div class="header-container">
+      <h2>MY_PROJECTS/</h2>
+    </div>
     <div class="projects-grid">
       {sortedProjects.map(project => (
         <ProjectCard
           name={project.repo}
-          description={project.description}
+          description={String(project.description || '').trim()}
           url={project.link}
-          language={project.language}
+          language={String(project.language || 'N/A').trim()}
+          languageColor={project.languageColor || '#000000'}
           image={project.image}
         />
       ))}
@@ -103,19 +92,24 @@ if (Array.isArray(allProjects)) {
     opacity: 1;
   }
 
+  .header-container {
+    margin-bottom: 2.5rem;
+  }
+
   h2 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 3vw, 2.5rem);
     font-weight: 800;
     font-style: italic;
     text-transform: uppercase;
-    margin-bottom: 2.5rem;
     color: var(--text-color);
+    margin: 0;
   }
 
   .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    padding-bottom: 2rem; /* Add padding to prevent content from being cut off */
   }
 </style>

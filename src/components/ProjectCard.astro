@@ -4,15 +4,17 @@ export interface Props {
   description: string;
   url: string;
   language: string;
+  languageColor: string;
   image: string;
 }
-const { name, description, url, language, image } = Astro.props;
+const { name, description, url, language, languageColor, image } = Astro.props;
 ---
 <a href={url} target="_blank" rel="noopener noreferrer" class="card">
   <img src={image} alt={`Social preview for ${name}`} class="card-img"/>
   <div class="card-content">
     <h3 class="card-title">{name}</h3>
     <p class="card-description">{description || 'No description available.'}</p>
+    <div class="language-separator" style={`background-color: ${languageColor};`}></div>
     <span class="card-language">{language}</span>
   </div>
 </a>
@@ -53,6 +55,20 @@ const { name, description, url, language, image } = Astro.props;
     margin: 0 0 1rem 0;
     min-height: 4.5em;
   }
+  .card-description {
+    font-family: var(--font-sans-serif);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+    min-height: 4.5em;
+  }
+
+  .language-separator {
+    height: 4px; /* Thin line */
+    width: 100%;
+    margin: 1rem 0; /* Space above and below */
+  }
+
   .card-language {
     font-family: var(--font-sans-serif);
     font-size: 0.9rem;
