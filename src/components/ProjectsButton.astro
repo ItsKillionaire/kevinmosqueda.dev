@@ -1,0 +1,85 @@
+---
+---
+<a href="#" class="cta" id="open-projects-btn">
+  <span>PROJECTS</span>
+  <svg width="13px" height="10px" viewBox="0 0 13 10">
+    <path d="M1,5 L11,5"></path>
+    <polyline points="8 1 12 5 8 9"></polyline>
+  </svg>
+</a>
+<style>
+  .cta {
+    margin-top: 2em;
+    position: relative;
+    z-index: 10; /* Ensures button is clickable above other hero elements */
+    height: 2.5em;
+    padding: 0 1.4em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+    background-color: transparent; /* Ensures the button's box is interactive */
+    overflow: hidden; /* Contains the pseudo-element */
+    -webkit-tap-highlight-color: transparent; /* Improves mobile experience */
+  }
+
+  /* The animated background, layered behind the content */
+  .cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 1.25em;
+    background: var(--accent-color);
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    z-index: 0; /* Sits at the bottom of the stacking context */
+  }
+
+  /* The content, layered on top of the background */
+  .cta span,
+  .cta svg {
+    position: relative;
+    z-index: 1; /* Places content above the ::before pseudo-element */
+    font-family: var(--font-sans-serif);
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+  }
+  
+  .cta svg {
+    margin-left: 0.55em;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: var(--text-color);
+    stroke-width: 2;
+    transform: translateX(0.28em) rotate(180deg);
+    transition: all 0.3s ease;
+  }
+
+  /* Hover and active states */
+  .cta:hover::before, .cta.is-active::before {
+    width: 100%;
+    opacity: 0.85;
+  }
+  
+  .cta:hover span, .cta.is-active span {
+    color: var(--bg-color);
+  }
+  
+  .cta:hover svg, .cta.is-active svg {
+    stroke: var(--bg-color);
+    transform: translateX(0) rotate(180deg);
+  }
+
+  .cta:active {
+    transform: scale(0.95);
+  }
+</style>

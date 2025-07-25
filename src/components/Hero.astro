@@ -1,4 +1,5 @@
 ---
+import ProjectsButton from './ProjectsButton.astro';
 ---
 <section class="hero">
   <div class="hero-content">
@@ -10,13 +11,7 @@
       <img src="/images/kevin-portrait.png" alt="Kevin Mosqueda portrait" class="portrait-img"/>
       <div class="accent-shape"></div>
     </div>
-    <a href="#" class="cta" id="open-projects-btn">
-      <span>PROJECTS</span>
-      <svg width="13px" height="10px" viewBox="0 0 13 10">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-      </svg>
-    </a>
+    <ProjectsButton />
   </div>
 </section>
 <style>
@@ -105,79 +100,7 @@
     border-radius: 20px 20px 40px 40px;
     z-index: 2;
   }
-
-  .cta {
-    margin-top: 3rem;
-    position: relative;
-    height: 45px; /* Set fixed height */
-    padding: 0 25px; /* Adjust padding */
-    display: flex; /* Use flexbox for centering */
-    align-items: center; /* Vertical centering */
-    justify-content: center; /* Horizontal centering */
-    transition: all 0.2s ease;
-    border: none;
-    background: none;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  .cta:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
-    border-radius: 50px;
-    background: var(--accent-color);
-    width: 45px;
-    height: 45px;
-    transition: all 0.3s ease;
-    opacity: 0.3;
-  }
-
-  .cta span {
-    position: relative;
-    font-family: var(--font-sans-serif);
-    font-size: 18px;
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    color: var(--text-color);
-    transition: color 0.3s ease;
-  }
-  
-  .cta svg {
-    position: relative;
-    top: 0;
-    margin-left: 10px;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke: var(--text-color);
-    stroke-width: 2;
-    transform: translateX(5px) rotate(180deg);
-    transition: all 0.3s ease;
-  }
-
-  .cta:hover:before, .cta.is-active:before {
-    width: 100%;
-    background: var(--accent-color);
-    opacity: 0.85; /* Added transparency */
-  }
-  
-  .cta:hover span, .cta.is-active span {
-    color: var(--bg-color);
-  }
-  
-  .cta:hover svg, .cta.is-active svg {
-    stroke: var(--bg-color);
-    transform: translateX(0) rotate(180deg);
-  }
-
-  .cta:active {
-    transform: scale(0.95);
-  }
 </style>
-
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const portraitContainer = document.querySelector('.portrait-container') as HTMLElement;
