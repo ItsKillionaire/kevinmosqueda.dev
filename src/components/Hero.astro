@@ -11,7 +11,9 @@ import ProjectsButton from './ProjectsButton.astro';
       <img src="/images/kevin-portrait.png" alt="Kevin Mosqueda portrait" class="portrait-img"/>
       <div class="accent-shape"></div>
     </div>
-    <ProjectsButton />
+    <div class="button-container">
+      <ProjectsButton />
+    </div>
   </div>
 </section>
 <style>
@@ -99,6 +101,13 @@ import ProjectsButton from './ProjectsButton.astro';
     background-color: var(--accent-color);
     border-radius: 20px 20px 40px 40px;
     z-index: 2;
+  }
+
+  .button-container {
+    position: absolute;
+    bottom: -5rem;
+    left: -2.5rem;
+    z-index: 10;
   }
 </style>
 <script>
