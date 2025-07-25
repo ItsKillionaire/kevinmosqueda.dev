@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap');
 
 :root {
-  --bg-color: #F1EEEB;
+  --bg-color: #F2E8DE;
   --accent-color: #D9543E;
   --text-color: #1D1D1B;
   --overlay-bg-color: rgba(241, 238, 235, 0.6);
@@ -18,10 +18,7 @@ body {
   padding: 0;
   font-size: clamp(12px, 1.2vw, 16px);
   line-height: 1.6;
-}
-
-h1, h2, h3 {
-  font-family: var(--font-serif);
+  background-image: linear-gradient(to bottom, var(--bg-color) var(--split-pos, 60vh), #F6F0E9 var(--split-pos, 60vh));
 }
 
 #projects-overlay.is-open .card {
