@@ -77,12 +77,12 @@ const sortedProjects = allProjects;
     top: 0;
     right: 0;
     height: 100%;
-    width: clamp(320px, 40vw, 500px);
+    width: clamp(300px, 85vw, 450px);
     
     /* Glassmorphism Effect */
-    background-color: rgba(241, 238, 235, 0.0); /* Use --bg-color with alpha */
-    backdrop-filter: blur(6px) saturate(180%);
-    -webkit-backdrop-filter: blur(5px) saturate(180%);
+    background-color: var(--overlay-bg-color);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
 
     transform: translateX(100%);
     transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
@@ -124,17 +124,26 @@ const sortedProjects = allProjects;
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    background: none;
-    border: none;
-    font-size: 2rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
     line-height: 1;
     cursor: pointer;
     color: var(--text-color);
     opacity: 0.7;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
   }
   #close-projects-btn:hover {
     opacity: 1;
+    transform: rotate(90deg);
+    background-color: rgba(29, 29, 27, 0.05);
+    border-color: rgba(29, 29, 27, 0.1);
   }
 
   .header-container {

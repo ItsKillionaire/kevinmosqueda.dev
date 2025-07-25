@@ -10,7 +10,7 @@ export interface Props {
 }
 const { name, description, url, language, languageColor, image, index } = Astro.props;
 ---
-<a href={url} target="_blank" rel="noopener noreferrer" class="card" style={`--index: ${index};`}>
+<a href={url} target="_blank" rel="noopener noreferrer" class="card" style={`--index: ${index}; --language-color: ${languageColor};`}>
   <img src={image} alt={`Social preview for ${name}`} class="card-img"/>
   <div class="card-content">
     <h3 class="card-title">{name}</h3>
@@ -29,15 +29,21 @@ const { name, description, url, language, languageColor, image, index } = Astro.
     background-color: var(--bg-color);
     opacity: 0;
     transform: translateY(-100%);
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+    will-change: transform, box-shadow, border-color;
   }
-
-  
 
   .card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transform: translateY(-8px) scale(1.01) rotate(-0.5deg);
+    border-color: var(--language-color, var(--accent-color));
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.2), 0 0 15px -5px var(--language-color, var(--accent-color));
   }
+
+  .card:hover .card-img {
+    transform: scale(1.05);
+  }
+
   .card-img {
     width: 100%;
     height: auto;
@@ -45,21 +51,34 @@ const { name, description, url, language, languageColor, image, index } = Astro.
     aspect-ratio: 3 / 2;
     object-fit: cover;
     background-color: #e0e0e0;
+    transition: transform 0.4s ease-out;
   }
   .card-content {
-    padding: 1.5rem;
+    padding: clamp(1rem, 4vw, 1.5rem);
   }
   .card-title {
     font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
     margin: 0 0 0.5rem 0;
   }
   .card-description {
     font-family: var(--font-sans-serif);
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 4vw, 1rem);
     line-height: 1.5;
     margin: 0 0 1rem 0;
-    min-height: 4.5em;
+    position: relative;
+    max-height: 6em; /* 4 lines of text */
+    overflow: hidden;
+  }
+
+  .card-description::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 1.5em;
+    background: linear-gradient(to top, var(--bg-color), transparent);
   }
 
   .language-separator {
@@ -70,7 +89,7 @@ const { name, description, url, language, languageColor, image, index } = Astro.
 
   .card-language {
     font-family: var(--font-sans-serif);
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 3.5vw, 0.9rem);
     font-weight: bold;
     text-transform: uppercase;
   }

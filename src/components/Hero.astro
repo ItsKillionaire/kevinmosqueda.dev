@@ -21,14 +21,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 8vh;
+    padding-top: clamp(4vh, 8vh, 12vh);
     padding-left: 2rem;
     padding-right: 2rem;
     overflow: hidden;
   }
   .background-text {
     position: absolute;
-    top: 60%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: var(--font-sans-serif);
@@ -38,7 +38,7 @@
     color: transparent;
     -webkit-text-stroke: 1px var(--text-color);
     text-stroke: 1px var(--text-color);
-    opacity: 0.08;
+    opacity: 0.06;
     z-index: 1;
   }
   .hero-content {
@@ -53,11 +53,11 @@
   .title-container {
     z-index: 10;
     position: relative;
-    transform: translateY(-25%);
+    transform: translateY(clamp(-40px, -10vw, -20px));
   }
   .title-container h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 800;
     font-style: italic;
     text-transform: uppercase;
@@ -70,9 +70,10 @@
   .portrait-container {
     position: relative;
     width: clamp(220px, 30vw, 280px);
-    height: clamp(300px, 20vw, 400px);
+    height: clamp(300px, 40vh, 400px);
     margin-top: -5rem;
     z-index: 5;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
   }
   .portrait-img {
     position: absolute;
@@ -98,24 +99,12 @@
     border-radius: 20px 20px 40px 40px;
     z-index: 2;
   }
-  
-  .portrait-img::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-radius: inherit;
-    z-index: -1;
-  }
 
   .projects-btn {
-    margin-top: 2.5rem;
-    padding: 0.75rem 1.5rem;
+    margin-top: 3rem;
+    padding: 0.85rem 1.85rem;
     font-family: var(--font-sans-serif);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -131,5 +120,7 @@
   .projects-btn:hover, .projects-btn.is-active {
     background-color: var(--text-color);
     color: var(--bg-color);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   }
 </style>
