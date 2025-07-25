@@ -29,7 +29,7 @@ const { name, description, url, language, languageColor, image, index } = Astro.
     background-color: var(--bg-color);
     opacity: 0;
     transform: translateY(-100%);
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.30s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     overflow: hidden;
     will-change: transform, box-shadow, border-color;
   }
@@ -41,20 +41,22 @@ const { name, description, url, language, languageColor, image, index } = Astro.
   }
 
   .card:hover .card-img {
-    transform: scale(1.05);
+    filter: sepia(0);
   }
 
   .card-img {
     width: 100%;
     height: auto;
     display: block;
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
+    object-position: center 20%;
     background-color: #e0e0e0;
-    transition: transform 0.4s ease-out;
+    transition: filter 0.4s ease-out;
+    filter: sepia(0.7);
   }
   .card-content {
-    padding: clamp(1rem, 4vw, 1.5rem);
+    padding: clamp(1rem, 1vw, 1.5rem);
   }
   .card-title {
     font-family: var(--font-serif);
@@ -78,13 +80,12 @@ const { name, description, url, language, languageColor, image, index } = Astro.
     right: 0;
     width: 100%;
     height: 1.5em;
-    background: linear-gradient(to top, var(--bg-color), transparent);
   }
 
   .language-separator {
     height: 4px; /* Thin line */
     width: 100%;
-    margin: 1rem 0; /* Space above and below */
+    margin: 0.1rem 0; /* Space above and below */
   }
 
   .card-language {
