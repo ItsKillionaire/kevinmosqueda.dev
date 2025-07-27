@@ -10,9 +10,9 @@ import ProjectsButton from './ProjectsButton.astro';
       <div class="background-text" aria-hidden="true">Synergy</div>
       <img src="/images/kevin-portrait.png" alt="Kevin Mosqueda portrait" class="portrait-img"/>
       <div class="accent-shape"></div>
-    </div>
-    <div class="button-container">
-      <ProjectsButton />
+      <div class="button-container">
+        <ProjectsButton />
+      </div>
     </div>
   </div>
 </section>
@@ -106,9 +106,8 @@ import ProjectsButton from './ProjectsButton.astro';
   
   .button-container {
     position: absolute;
-    top: var(--split-pos);
-    left: 0;
-    transform: translateY(1rem);
+    bottom: -5.5rem;
+    left: -6.5rem;
     z-index: 10;
   }
 </style>
