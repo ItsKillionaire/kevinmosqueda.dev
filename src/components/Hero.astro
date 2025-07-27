@@ -1,5 +1,5 @@
 ---
-import ProjectsButton from './ProjectsButton.astro';
+
 ---
 <section class="hero">
   <div class="hero-content">
@@ -10,21 +10,19 @@ import ProjectsButton from './ProjectsButton.astro';
       <div class="background-text" aria-hidden="true">Synergy</div>
       <img src="/images/kevin-portrait.png" alt="Kevin Mosqueda portrait" class="portrait-img"/>
       <div class="accent-shape"></div>
-      <div class="button-container">
-        <ProjectsButton />
-      </div>
     </div>
+    <p class="subtitle">System Administrator & Full-Stack Developer</p>
   </div>
 </section>
 <style>
   .hero {
     position: relative;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     padding-top: clamp(4vh, 8vh, 12vh);
+    padding-bottom: 2rem;
     padding-left: 2rem;
     padding-right: 2rem;
     overflow: hidden;
@@ -78,6 +76,19 @@ import ProjectsButton from './ProjectsButton.astro';
     z-index: 5;
     filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
   }
+  .subtitle {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--accent-color);
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 10;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
   .portrait-img {
     position: absolute;
     top: 0;
@@ -103,44 +114,10 @@ import ProjectsButton from './ProjectsButton.astro';
     z-index: 2;
   }
 
-  
-  .button-container {
-    position: absolute;
-    bottom: -5.5rem;
-    left: -6.0rem;
-    z-index: 10;
-  }
-
   @media (min-width: 768px) {
-    .button-container {
-      left: -20.5rem;
+    .hero {
+      min-height: 100vh;
     }
   }
 </style>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const portraitContainer = document.querySelector('.portrait-container') as HTMLElement;
-    const body = document.body;
-
-    if (!portraitContainer) return;
-
-    const updateSplitPosition = () => {
-      const rect = portraitContainer.getBoundingClientRect();
-      const portraitBottom = rect.bottom + window.scrollY;
-      const offset = 30; // Adjust this value to control the space below the portrait
-      const splitPosition = portraitBottom + offset;
-
-      body.style.setProperty('--split-pos', `${splitPosition}px`);
-    };
-
-    // Initial calculation
-    updateSplitPosition();
-
-    // Update on resize
-    window.addEventListener('resize', updateSplitPosition);
-
-    // Also update after a short delay to account for any layout shifts
-    setTimeout(updateSplitPosition, 200);
-  });
-</script>
 

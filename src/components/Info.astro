@@ -1,0 +1,39 @@
+---
+import About from './About.astro';
+import Skills from './Skills.astro';
+import Actions from './Actions.astro';
+---
+
+<div class="info-container">
+  <About />
+  <div class="skills-actions-container">
+    <Skills />
+    <Actions />
+  </div>
+</div>
+
+<style>
+  .info-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .skills-actions-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .info-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .skills-actions-container {
+      grid-template-rows: auto 1fr;
+    }
+  }
+</style>

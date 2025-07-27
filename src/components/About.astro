@@ -5,12 +5,12 @@ import AboutVisual from './AboutVisual.astro';
   <div class="about-content">
     <div class="about-text">
       <p class="about-label">[ about_me ]</p>
-      <h2 class="about-heading">$ From Infrastructure to Interaction</h2>
+      <h2 class="about-heading">From Infrastructure to Interaction</h2>
       <p>
-        For years, my world has been the bedrock of technology. As a System Administrator, I've architected and maintained the intricate server environments that power modern applications. Working deep within Linux and Windows systems, I've mastered the art of automation, scripting with Bash and PowerShell to create resilient, efficient infrastructure. This foundational experience has given me a unique, metal-up perspective on how software truly operates.
+        For years, my world has been the bedrock of technology. As a System Administrator, I've architected and maintained the intricate server environments that power modern applications. Working deep within Linux and Windows systems, I've mastered the art of automation with Bash and PowerShell to create resilient, efficient infrastructure. This has given me a unique, metal-up perspective on how software truly operates.
       </p>
       <p>
-        Now, I'm channeling that deep understanding into a new passion: building the applications themselves. My journey is a natural progression from infrastructure to interaction—from ensuring the system runs, to crafting the experiences users love. With a strong command of frontend technologies like HTML, CSS, and JavaScript, and a drive to master the full stack, I build clean, efficient, and thoughtful digital solutions.
+        Now, I'm channeling that deep understanding into building the applications themselves. My journey is a natural progression from infrastructure to interaction—from ensuring the system runs, to crafting the experiences users love. With a drive to master the full stack, I build clean, efficient, and thoughtful digital solutions.
       </p>
     </div>
     <div class="about-image">
@@ -21,14 +21,13 @@ import AboutVisual from './AboutVisual.astro';
 
 <style>
   .about {
-    padding: 5rem 2rem;
-    background-color: #F6F0E9;
+    padding: 1rem 2rem;
   }
 
   .about-content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
     align-items: center;
@@ -36,6 +35,7 @@ import AboutVisual from './AboutVisual.astro';
 
   .about-text {
     max-width: 65ch;
+    min-width: 30ch;
   }
 
   .about-label {
@@ -53,20 +53,17 @@ import AboutVisual from './AboutVisual.astro';
     line-height: 1.2;
   }
 
-  .about-image img {
-    width: 100%;
-    border-radius: 8px;
-    filter: grayscale(100%);
+  .about-image {
+    display: none;
   }
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     .about-content {
-      grid-template-columns: 1fr;
+      grid-template-columns: 2fr 1fr;
     }
 
     .about-image {
-      order: -1;
-      margin-bottom: 2rem;
+      display: block;
     }
   }
 </style>

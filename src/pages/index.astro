@@ -1,13 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Skills from '../components/Skills.astro';
+import Info from '../components/Info.astro';
 ---
 <BaseLayout title="Kevin Mosqueda | Home">
   <main>
-    <Hero />
-    <About />
-    <Skills />
+    <div class="container">
+      <Hero />
+      <Info />
+    </div>
   </main>
 </BaseLayout>
+
+<style>
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      grid-template-columns: 2fr 1fr;
+      padding: 2rem;
+      gap: 2rem;
+    }
+  }
+</style>
