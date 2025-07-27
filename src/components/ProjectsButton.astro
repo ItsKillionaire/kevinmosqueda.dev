@@ -82,3 +82,17 @@
     transform: scale(0.95);
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const openProjectsBtn = document.getElementById('open-projects-btn');
+    const projectsOverlay = document.getElementById('projects-overlay');
+
+    if (openProjectsBtn && projectsOverlay) {
+      openProjectsBtn.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default anchor behavior
+        projectsOverlay.classList.add('is-open');
+      });
+    }
+  });
+</script>

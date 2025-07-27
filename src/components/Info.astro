@@ -1,14 +1,12 @@
 ---
 import About from './About.astro';
 import Skills from './Skills.astro';
-import Actions from './Actions.astro';
 ---
 
 <div class="info-container">
   <About />
-  <div class="skills-actions-container">
+  <div class="skills-container">
     <Skills />
-    <Actions />
   </div>
 </div>
 
@@ -19,7 +17,7 @@ import Actions from './Actions.astro';
     gap: 2rem;
   }
 
-  .skills-actions-container {
+  .skills-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -35,8 +33,9 @@ import Actions from './Actions.astro';
     .info-container {
       grid-template-columns: 2fr 1fr;
     }
-    .skills-actions-container {
+    .skills-container {
       grid-template-rows: auto 1fr;
     }
   }
 </style>
+

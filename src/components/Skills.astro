@@ -1,8 +1,12 @@
 ---
+import ProjectsButton from './ProjectsButton.astro';
 ---
 <section class="skills">
   <div class="skills-content">
-    <p class="skills-label">[ tech_stack ]</p>
+    <div class="skills-header">
+      <p class="skills-label">[ tech_stack ]</p>
+      <ProjectsButton />
+    </div>
     <div class="skills-grid">
       <div class="skill-category">
         <h3>Frontend</h3>
@@ -61,11 +65,17 @@
     margin: 0 auto;
   }
 
+  .skills-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
   .skills-label {
     font-family: 'IBM Plex Mono', monospace;
     color: var(--accent-color);
     font-weight: 500;
-    margin-bottom: 1rem;
   }
 
   .skills-grid {
@@ -105,11 +115,49 @@
   }
 
   .skill-item:active img {
-    transform: scale(0.9);
+    transform: scale(0.6);
   }
 
-  .skill-item span {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
+  .skill-item.tapped img {
+    animation: tap-animation 0.3s ease-out;
+  }
+
+  @keyframes tap-animation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const skillItems = document.querySelectorAll('.skill-item');
+
+    skillItems.forEach(item => {
+      item.addEventListener('touchend', (event) => {
+        // Prevent default touch behavior to avoid double-tap issues
+        event.preventDefault();
+        item.classList.add('tapped');
+        setTimeout(() => {
+          item.classList.remove('tapped');
+        }, 300); // Match animation duration
+      });
+
+      item.addEventListener('click', (event) => {
+        // Only trigger if not a touch event (touchend already handled)
+        if (event.pointerType === 'mouse') {
+          item.classList.add('tapped');
+          setTimeout(() => {
+            item.classList.remove('tapped');
+          }, 300); // Match animation duration
+        }
+      });
+    });
+  });
+</script>
