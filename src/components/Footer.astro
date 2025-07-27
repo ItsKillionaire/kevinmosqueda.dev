@@ -1,28 +1,31 @@
 ---
-import Socials from './Socials.astro';
 ---
-
 <footer class="footer">
-  <div class="container">
-    <div class="footer-content">
-      <Socials />
-      <p>&copy; {new Date().getFullYear()} Kevin Mosqueda. All rights reserved.</p>
+  <div class="footer-content">
+    <div class="back-to-top">
+      <a href="#top">Back to top &uarr;</a>
     </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    padding: 2rem 0;
-    background-color: var(--color-gray-900);
-    color: var(--color-gray-400);
-    text-align: center;
+    padding: 2rem;
+    background-color: #F6F0E9;
+    border-top: 1px solid #E0D8D0;
   }
 
   .footer-content {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .back-to-top a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--text-color);
   }
 </style>

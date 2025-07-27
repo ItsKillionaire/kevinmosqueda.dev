@@ -1,177 +1,122 @@
-<section id="about">
-  <div class="container">
-    <div class="content">
-      <h2 class="heading">// My Journey</h2>
-      <p class="narrative">
-        For years, I've been the architect behind the curtain, working as a System Administrator across both Linux and Windows environments. My foundation is built on ensuring robust, secure, and efficient infrastructure—from server management and automation to scripting solutions that streamline complex operations. This experience has given me a deep, foundational understanding of how technology works, from the metal up.
+---
+import AboutVisual from './AboutVisual.astro';
+---
+<section class="about">
+  <div class="about-content">
+    <div class="about-text">
+      <p class="about-label">[ about_me ]</p>
+      <h2 class="about-heading">$ From Infrastructure to Interaction</h2>
+      <p>
+        For years, my world has been the bedrock of technology. As a System Administrator, I've architected and maintained the intricate server environments that power modern applications. Working deep within Linux and Windows systems, I've mastered the art of automation, scripting with Bash and PowerShell to create resilient, efficient infrastructure. This foundational experience has given me a unique, metal-up perspective on how software truly operates.
       </p>
-      <p class="narrative">
-        My passion for problem-solving and building things from scratch has naturally led me to the world of development. I'm now channeling my systems expertise into creating intuitive and powerful user experiences, with a strong command of modern frontend technologies like HTML, CSS, JavaScript, and Astro.
-      </p>
-      <p class="narrative">
-        My goal is to become a full-stack developer, bridging the gap between sophisticated backend logic and polished, user-centric frontends. I'm excited to build digital products that are not only functional and scalable but also beautiful and a pleasure to use.
+      <p>
+        Now, I'm channeling that deep understanding into a new passion: building the applications themselves. My journey is a natural progression from infrastructure to interaction—from ensuring the system runs, to crafting the experiences users love. With a strong command of frontend technologies like HTML, CSS, and JavaScript, and a drive to master the full stack, I build clean, efficient, and thoughtful digital solutions.
       </p>
     </div>
-    <div class="sidebar">
-      <h3 class="principles-heading">&gt; Core Principles</h3>
-      <ul class="principles-list">
-        <li>&gt; Stability first</li>
-        <li>&gt; Automate everything</li>
-        <li>&gt; Solve the root cause</li>
-        <li>&gt; Clean, efficient code</li>
-      </ul>
+    <div class="about-image">
+      <AboutVisual />
     </div>
   </div>
 </section>
 
 <style>
-  #about {
-    padding: 6rem 2rem;
-    background: var(--color-background-secondary); /* Continuing the gradient */
-    color: var(--color-text-primary);
+  .about {
+    padding: 5rem 2rem;
+    background-color: #F6F0E9;
   }
 
-  .container {
+  .about-content {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 4rem;
     max-width: 1200px;
     margin: 0 auto;
+    align-items: center;
   }
 
-  .heading {
+  .about-text {
+    max-width: 65ch;
+  }
+
+  .about-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 2.5rem;
-    color: var(--color-accent);
-    margin-bottom: 2rem;
-  }
-
-  .narrative {
-    font-family: var(--font-family-serif);
-    font-size: 1.125rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-  }
-
-  .sidebar {
-    padding-top: 0.5rem;
-  }
-
-  .principles-heading {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 1.25rem;
-    color: var(--color-text-secondary);
+    color: var(--accent-color);
+    font-weight: 500;
     margin-bottom: 1rem;
   }
 
-  .principles-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 1rem;
-    line-height: 1.9;
-    color: var(--color-text-secondary);
+  .about-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.2;
   }
 
-  /* Blinking cursor effect */
-  .heading::after {
-    content: '';
-    border-left: 0.2em solid var(--color-accent);
-    animation: blink 1s steps(1) infinite;
-    opacity: 0; /* Initially hidden */
+  .about-image img {
+    width: 100%;
+    border-radius: 8px;
+    filter: grayscale(100%);
   }
 
-  @keyframes blink {
-    50% {
-      opacity: 1;
-    }
-  }
-
-  /* Responsive adjustments */
   @media (max-width: 768px) {
-    .container {
+    .about-content {
       grid-template-columns: 1fr;
-      gap: 3rem;
     }
 
-    .heading {
-      font-size: 2rem;
-    }
-
-    .narrative {
-      font-size: 1rem;
-    }
-
-    .principles-heading {
-      font-size: 1.125rem;
-    }
-
-    .principles-list {
-      font-size: 0.9rem;
+    .about-image {
+      order: -1;
+      margin-bottom: 2rem;
     }
   }
-
-  .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-    }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const heading = document.querySelector('#about .heading');
+    const heading = document.querySelector('.about-heading');
     if (!heading) return;
 
-    const originalText = '// My Journey';
-    let currentText = '';
+    const text = heading.textContent;
+    if (!text) return;
+    heading.textContent = '';
+
     let i = 0;
-
-    // Hide the original text but keep it for screen readers
-    heading.innerHTML = `<span aria-hidden="true"></span><span class="sr-only">${originalText}</span>`;
-    const textContainer = heading.querySelector('span[aria-hidden="true"]');
-
-    function type() {
-      if (i < originalText.length) {
-        currentText += originalText.charAt(i);
-        if(textContainer) {
-          textContainer.textContent = currentText;
-        }
+    const typing = () => {
+      if (i < text.length) {
+        heading.textContent += text.charAt(i);
         i++;
-        setTimeout(type, 100);
+        setTimeout(typing, 100);
       } else {
-        // Show the blinking cursor after typing is complete
-        if (heading) {
-            heading.classList.add('typing-done');
-        }
+        const cursor = document.createElement('span');
+        cursor.textContent = '█';
+        cursor.style.animation = 'blink 1s step-end infinite';
+        heading.appendChild(cursor);
+        setTimeout(() => {
+          cursor.style.display = 'none';
+        }, 3000);
       }
-    }
+    };
 
-    // Use Intersection Observer to trigger the animation when the section is visible
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          setTimeout(type, 500); // Start typing after a short delay
-          observer.unobserve(entry.target); // Stop observing after it's triggered
+          typing();
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    });
 
-    const aboutSection = document.querySelector('#about');
-    if (aboutSection) {
-      observer.observe(aboutSection);
-    }
+    observer.observe(heading);
   });
 </script>
-<style>
-    .heading.typing-done::after {
-        opacity: 1;
+
+<style is:global>
+  @keyframes blink {
+    from, to {
+      opacity: 1;
     }
+    50% {
+      opacity: 0;
+    }
+  }
 </style>

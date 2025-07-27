@@ -1,0 +1,59 @@
+---
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section id="projects">
+  <div class="container">
+    <h2 class="heading">=> Selected Work</h2>
+    <div class="projects-grid">
+      <ProjectCard
+        name="Project 1"
+        description="A brief description of Project 1."
+        url="#"
+        github="#"
+        tech={['Astro', 'TypeScript', 'TailwindCSS']}
+      />
+      <ProjectCard
+        name="Project 2"
+        description="A brief description of Project 2."
+        url="#"
+        github="#"
+        tech={['React', 'Node.js', 'Express']}
+      />
+      <ProjectCard
+        name="Project 3"
+        description="A brief description of Project 3."
+        url="#"
+        github="#"
+        tech={['Python', 'Flask', 'SQLAlchemy']}
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  #projects {
+    padding: 6rem 2rem;
+    background-color: var(--color-background-primary);
+    color: var(--color-text-primary);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .heading {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+</style>
