@@ -1,0 +1,169 @@
+---
+---
+<section class="experience-section">
+  <h2>EXPERIENCE</h2>
+  <div class="experience-container">
+    <div class="job">
+      <h3>System Administrator</h3>
+      <p class="company">Current Company | 2022 - Present</p>
+      <ul>
+        <li>Administered and maintained a hybrid environment of Windows and Linux servers, ensuring high availability and performance.</li>
+        <li>Automated routine tasks using Bash and PowerShell, reducing manual effort and improving efficiency.</li>
+        <li>Managed user accounts, permissions, and access control to safeguard system security.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <h3>Support Technician</h3>
+      <p class="company">Previous Company | 2020 - 2022</p>
+      <ul>
+        <li>Provided technical support to a wide range of clients, troubleshooting and resolving hardware and software issues.</li>
+        <li>Documented and tracked support tickets, ensuring timely resolution and client satisfaction.</li>
+        <li>Collaborated with senior technicians to escalate and resolve complex technical problems.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="resume-cta">
+    <a href="/resume.pdf" target="_blank" class="cta">DOWNLOAD RESUME</a>
+  </div>
+</section>
+
+<style>
+  .experience-section {
+    padding: 4rem 2rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .experience-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .job {
+    margin-bottom: 2rem;
+  }
+
+  .job h3 {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .company {
+    font-family: var(--font-sans-serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    font-family: var(--font-sans-serif);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+  }
+
+  .resume-cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .cta {
+    position: relative;
+    z-index: 1;
+    height: 2.5em;
+    padding: 0 1.4em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 1.25em;
+    background: var(--accent-color);
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    z-index: 0;
+  }
+
+  .cta span,
+  .cta svg {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-sans-serif);
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+  }
+  
+  .cta svg {
+    margin-left: 0.55em;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: var(--text-color);
+    stroke-width: 2;
+    transform: translateX(0.28em) rotate(180deg);
+    transition: all 0.3s ease;
+  }
+
+  .cta:hover::before, .cta.is-active::before {
+    width: 100%;
+    opacity: 0.85;
+  }
+  
+  .cta:hover span, .cta.is-active span {
+    color: var(--bg-color);
+  }
+  
+  .cta:hover svg, .cta.is-active svg {
+    stroke: var(--bg-color);
+    transform: translateX(0) rotate(180deg);
+  }
+
+  .cta:active {
+    transform: scale(0.95);
+  }
+</style>

@@ -1,0 +1,177 @@
+<section id="about">
+  <div class="container">
+    <div class="content">
+      <h2 class="heading">// My Journey</h2>
+      <p class="narrative">
+        For years, I've been the architect behind the curtain, working as a System Administrator across both Linux and Windows environments. My foundation is built on ensuring robust, secure, and efficient infrastructure—from server management and automation to scripting solutions that streamline complex operations. This experience has given me a deep, foundational understanding of how technology works, from the metal up.
+      </p>
+      <p class="narrative">
+        My passion for problem-solving and building things from scratch has naturally led me to the world of development. I'm now channeling my systems expertise into creating intuitive and powerful user experiences, with a strong command of modern frontend technologies like HTML, CSS, JavaScript, and Astro.
+      </p>
+      <p class="narrative">
+        My goal is to become a full-stack developer, bridging the gap between sophisticated backend logic and polished, user-centric frontends. I'm excited to build digital products that are not only functional and scalable but also beautiful and a pleasure to use.
+      </p>
+    </div>
+    <div class="sidebar">
+      <h3 class="principles-heading">&gt; Core Principles</h3>
+      <ul class="principles-list">
+        <li>&gt; Stability first</li>
+        <li>&gt; Automate everything</li>
+        <li>&gt; Solve the root cause</li>
+        <li>&gt; Clean, efficient code</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  #about {
+    padding: 6rem 2rem;
+    background: var(--color-background-secondary); /* Continuing the gradient */
+    color: var(--color-text-primary);
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .heading {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    margin-bottom: 2rem;
+  }
+
+  .narrative {
+    font-family: var(--font-family-serif);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar {
+    padding-top: 0.5rem;
+  }
+
+  .principles-heading {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .principles-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--color-text-secondary);
+  }
+
+  /* Blinking cursor effect */
+  .heading::after {
+    content: '';
+    border-left: 0.2em solid var(--color-accent);
+    animation: blink 1s steps(1) infinite;
+    opacity: 0; /* Initially hidden */
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .heading {
+      font-size: 2rem;
+    }
+
+    .narrative {
+      font-size: 1rem;
+    }
+
+    .principles-heading {
+      font-size: 1.125rem;
+    }
+
+    .principles-list {
+      font-size: 0.9rem;
+    }
+  }
+
+  .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const heading = document.querySelector('#about .heading');
+    if (!heading) return;
+
+    const originalText = '// My Journey';
+    let currentText = '';
+    let i = 0;
+
+    // Hide the original text but keep it for screen readers
+    heading.innerHTML = `<span aria-hidden="true"></span><span class="sr-only">${originalText}</span>`;
+    const textContainer = heading.querySelector('span[aria-hidden="true"]');
+
+    function type() {
+      if (i < originalText.length) {
+        currentText += originalText.charAt(i);
+        if(textContainer) {
+          textContainer.textContent = currentText;
+        }
+        i++;
+        setTimeout(type, 100);
+      } else {
+        // Show the blinking cursor after typing is complete
+        if (heading) {
+            heading.classList.add('typing-done');
+        }
+      }
+    }
+
+    // Use Intersection Observer to trigger the animation when the section is visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(type, 500); // Start typing after a short delay
+          observer.unobserve(entry.target); // Stop observing after it's triggered
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const aboutSection = document.querySelector('#about');
+    if (aboutSection) {
+      observer.observe(aboutSection);
+    }
+  });
+</script>
+<style>
+    .heading.typing-done::after {
+        opacity: 1;
+    }
+</style>
