@@ -11,8 +11,8 @@
       <img src="/images/kevin-portrait.png" alt="Kevin Mosqueda portrait" class="portrait-img"/>
       <div class="accent-shape"></div>
     </div>
-    <p class="subtitle">System Administrator & Full-Stack Developer</p>
   </div>
+  <p class="subtitle">System Administrator & Full-Stack<br/>Developer</p>
 </section>
 <style>
   .hero {
@@ -79,12 +79,11 @@
   .subtitle {
     font-family: var(--font-serif);
     font-weight: 700;
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-size: clamp(1rem, 1.5vw, 1.4rem);
     color: var(--accent-color);
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative; /* Change to relative positioning */
+    margin-top: -3.5rem; /* Adjust margin to overlap portrait */
+    text-align: center;
     width: 100%;
     z-index: 10;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
