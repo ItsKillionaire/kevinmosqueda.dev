@@ -28,7 +28,7 @@ import AboutVisual from './AboutVisual.astro';
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     align-items: center;
   }
@@ -36,6 +36,12 @@ import AboutVisual from './AboutVisual.astro';
   .about-text {
     max-width: 65ch;
     min-width: 30ch;
+  }
+
+  @media (min-width: 1024px) {
+    .about-text {
+      max-width: 140ch;
+    }
   }
 
   .about-label {

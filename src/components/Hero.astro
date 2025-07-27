@@ -22,7 +22,7 @@
     align-items: center;
     justify-content: flex-start;
     padding-top: clamp(4vh, 8vh, 12vh);
-    padding-bottom: 2rem;
+    padding-bottom: 0;
     padding-left: 2rem;
     padding-right: 2rem;
     overflow: hidden;
@@ -115,7 +115,7 @@
 
   @media (min-width: 768px) {
     .hero {
-      min-height: 100vh;
+      min-height: unset; /* Remove min-height for desktop */
     }
   }
 </style>
