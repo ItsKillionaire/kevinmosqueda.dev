@@ -1,0 +1,199 @@
+
+---
+---
+<div class="socials-container">
+  <button class="hamburger-button" aria-label="Open social media links">
+    <span class="hamburger-icon"></span>
+  </button>
+  <div class="socials-menu">
+    <a href="https://github.com/ItsKillionaire" target="_blank" rel="noopener noreferrer">
+      <img src="/images/github.svg" alt="GitHub" />
+      <span>GitHub</span>
+    </a>
+    <a href="https://www.linkedin.com/in/kevin-mosqueda/" target="_blank" rel="noopener noreferrer">
+      <img src="/images/linkedin.svg" alt="LinkedIn" />
+      <span>LinkedIn</span>
+    </a>
+  </div>
+</div>
+
+<style>
+  .socials-container {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 90; /* Lower z-index than projects overlay */
+  }
+
+  .hamburger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 15px; /* Increased clickable area */
+    z-index: 95; /* Lower z-index than projects overlay, but above container */
+    position: relative;
+    /* Adjust for padding */
+    top: -15px;
+    right: -15px;
+  }
+
+  .hamburger-icon {
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: var(--text-color);
+    position: relative;
+    transition: background-color 0.3s ease;
+  }
+
+  .hamburger-icon::before,
+  .hamburger-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-color);
+    transition: transform 0.3s ease;
+  }
+
+  .hamburger-icon::before {
+    top: -8px;
+  }
+
+  .hamburger-icon::after {
+    bottom: -8px;
+  }
+
+  .socials-container.open .hamburger-icon {
+    background-color: transparent;
+  }
+
+  .socials-container.open .hamburger-icon::before {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .socials-container.open .hamburger-icon::after {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .socials-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background-color: var(--overlay-bg-color);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    transition: clip-path 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-bottom-left-radius: 100%;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .socials-container.open .socials-menu {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .socials-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: var(--font-sans-serif);
+    font-size: 1rem;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .socials-container.open .socials-menu a {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.3s;
+  }
+
+  .socials-menu a img {
+    width: 24px;
+    height: 24px;
+    filter: var(--text-color);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .socials-container {
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .hamburger-button {
+      padding: 10px;
+      top: -10px;
+      right: -10px;
+    }
+
+    .hamburger-icon {
+      width: 25px;
+    }
+
+    .hamburger-icon::before,
+    .hamburger-icon::after {
+      height: 2px;
+    }
+
+    .hamburger-icon::before {
+      top: -7px;
+    }
+
+    .hamburger-icon::after {
+      bottom: -7px;
+    }
+
+    .socials-container.open .hamburger-icon::before {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .socials-container.open .hamburger-icon::after {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .socials-menu {
+      width: 180px;
+      height: 180px;
+    }
+
+    .socials-menu a {
+      font-size: 0.9rem;
+    }
+
+    .socials-menu a img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.socials-container');
+    const button = document.querySelector('.hamburger-button');
+
+    if (button && container) {
+      button.addEventListener('click', () => {
+        container.classList.toggle('open');
+      });
+    }
+  document.addEventListener('click', (e) => {
+      if (container.classList.contains('open') && !container.contains(e.target)) {
+        container.classList.remove('open');
+      }
+    });
+  });
+</script>
