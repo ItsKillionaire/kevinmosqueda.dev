@@ -60,7 +60,7 @@ import ProjectsButton from './ProjectsButton.astro';
   }
   .title-container h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 8vw, 5rem);
+    font-size: clamp(2.4rem, 6.4vw, 4rem);
     font-weight: 800;
     font-style: italic;
     text-transform: uppercase;
@@ -72,8 +72,8 @@ import ProjectsButton from './ProjectsButton.astro';
   }
   .portrait-container {
     position: relative;
-    width: clamp(220px, 30vw, 280px);
-    height: clamp(300px, 40vh, 400px);
+    width: clamp(180px, 22vw, 260px);
+    aspect-ratio: 3 / 4.2;
     margin-top: -5rem;
     z-index: 5;
     filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
@@ -103,10 +103,12 @@ import ProjectsButton from './ProjectsButton.astro';
     z-index: 2;
   }
 
+  
   .button-container {
     position: absolute;
-    bottom: -5rem;
-    left: -2.5rem;
+    top: var(--split-pos);
+    left: 0;
+    transform: translateY(1rem);
     z-index: 10;
   }
 </style>
@@ -136,3 +138,4 @@ import ProjectsButton from './ProjectsButton.astro';
     setTimeout(updateSplitPosition, 200);
   });
 </script>
+
