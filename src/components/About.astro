@@ -4,12 +4,14 @@ import AboutVisual from './AboutVisual.astro';
 <section class="about">
   <div class="about-content">
     <div class="about-text">
-      <p class="about-label">[ about_me ]</p>
+      <div class="about-header">
+        <p class="about-label">[ about_me ]</p>
+      </div>
       <h2 class="about-heading">From Infrastructure to Interaction</h2>
-      <p>
+      <p class="about-body">
         For years, my world has been the bedrock of technology. As a System Administrator, I've architected and maintained the intricate server environments that power modern applications. Working deep within Linux and Windows systems, I've mastered the art of automation with Bash and PowerShell to create resilient, efficient infrastructure. This has given me a unique, metal-up perspective on how software truly operates.
       </p>
-      <p>
+      <p class="about-body">
         Now, I'm channeling that deep understanding into building the applications themselves. My journey is a natural progression from infrastructure to interaction—from ensuring the system runs, to crafting the experiences users love. With a drive to master the full stack, I build clean, efficient, and thoughtful digital solutions.
       </p>
     </div>
@@ -28,49 +30,37 @@ import AboutVisual from './AboutVisual.astro';
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    max-width: 1400px;
     margin: 0 auto;
     align-items: center;
   }
 
-  .about-text {
-    max-width: 65ch;
-    min-width: 30ch;
-  }
-
-  @media (min-width: 1024px) {
-    .about-text {
-      max-width: 140ch;
-    }
+  .about-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   .about-label {
     font-family: 'IBM Plex Mono', monospace;
     color: var(--accent-color);
     font-weight: 500;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
   }
 
   .about-heading {
     font-family: var(--font-serif);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
+    margin-top: 0;
     margin-bottom: 2rem;
     line-height: 1.2;
   }
 
-  .about-image {
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    .about-content {
-      grid-template-columns: 2fr 1fr;
-    }
-
-    .about-image {
-      display: block;
-    }
+  .about-body {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.6;
   }
 </style>
 
