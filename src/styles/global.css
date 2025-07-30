@@ -29,6 +29,7 @@ body {
   font-size: clamp(12px, 1.2vw, 16px);
   line-height: 1.6;
   -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
 }
 
 #projects-overlay.is-open .card {
