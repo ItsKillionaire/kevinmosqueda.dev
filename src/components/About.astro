@@ -1,11 +1,19 @@
 ---
 import AboutVisual from './AboutVisual.astro';
+import locationIcon from '../assets/icons/location.svg';
 ---
 <section class="about">
   <div class="about-content">
     <div class="about-text">
       <div class="about-header">
         <p class="about-label">[ about_me ]</p>
+      </div>
+      <div class="about-details">
+        <p class="about-subtitle">System Administrator / Developer</p>
+        <div class="location-container">
+          <img src={locationIcon.src} alt="Location icon" class="location-icon" />
+          <span class="location-text">Zapopan, Mexico 🇲🇽</span>
+        </div>
       </div>
       <h2 class="about-heading">From Infrastructure to Interaction</h2>
       <p class="about-body">
@@ -38,7 +46,47 @@ import AboutVisual from './AboutVisual.astro';
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-details {
     margin-bottom: 1rem;
+  }
+
+  .about-subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+  }
+
+  .location-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .location-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  .location-text {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-color);
+    font-weight: 500;
+  }
+
+  @media (max-width: 767px) {
+    .location-text {
+      font-size: 0.9rem;
+    }
+    .about-subtitle {
+      font-size: 1rem;
+    }
   }
 
   .about-label {
