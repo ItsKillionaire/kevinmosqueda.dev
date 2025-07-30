@@ -10,6 +10,17 @@
   --font-sans-serif: 'Inter', sans-serif;
 }
 
+html {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -19,6 +30,7 @@ body {
   font-size: clamp(12px, 1.2vw, 16px);
   line-height: 1.6;
   -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
 }
 
 #projects-overlay.is-open .card {
