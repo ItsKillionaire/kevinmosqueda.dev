@@ -5,7 +5,7 @@ import ProjectsButton from './ProjectsButton.astro';
   <div class="skills-content">
     <div class="skills-header">
       <p class="skills-label">[ skills ]</p>
-      <ProjectsButton style="margin-left: auto;" />
+      <ProjectsButton />
     </div>
     <div class="skills-grid">
       <div class="skill-category">
@@ -48,7 +48,7 @@ import ProjectsButton from './ProjectsButton.astro';
 
 <style>
   .skills {
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     background-color: #F6F0E9;
   }
   .skills-content {
@@ -58,7 +58,7 @@ import ProjectsButton from './ProjectsButton.astro';
   .skills-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
     margin-bottom: 1rem;
   }
   .skills-label {
