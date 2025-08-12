@@ -1,32 +1,28 @@
 ---
 import ProjectCard from './ProjectCard.astro';
+
+// Fetch all pinned projects
+const response = await fetch('https://pinned.berrysauce.dev/get/ItsKillionaire');
+const allProjects = (await response.json()).map(p => ({...p, repo: p.name.trim(), link: `https://github.com/${p.author}/${p.name}`, image: `https://opengraph.githubassets.com/1/${p.author}/${p.name}`, language: p.language, languageColor: p.languageColor}));
+
+const sortedProjects = allProjects.slice(0, 3);
 ---
 
 <section id="projects" class="fade-in-up">
   <div class="container">
     <h2 class="heading">=> Selected Work</h2>
     <div class="projects-grid">
-      <ProjectCard
-        name="Project 1"
-        description="A brief description of Project 1."
-        url="#"
-        github="#"
-        tech={['Astro', 'TypeScript', 'TailwindCSS']}
-      />
-      <ProjectCard
-        name="Project 2"
-        description="A brief description of Project 2."
-        url="#"
-        github="#"
-        tech={['React', 'Node.js', 'Express']}
-      />
-      <ProjectCard
-        name="Project 3"
-        description="A brief description of Project 3."
-        url="#"
-        github="#"
-        tech={['Python', 'Flask', 'SQLAlchemy']}
-      />
+      {sortedProjects.map((project, index) => (
+        <ProjectCard
+          name={project.repo}
+          description={String(project.description || '').trim()}
+          url={project.link}
+          language={String(project.language || 'N/A').trim()}
+          languageColor={project.languageColor || '#000000'}
+          image={project.image}
+          index={index}
+        />
+      ))}
     </div>
   </div>
 </section>
