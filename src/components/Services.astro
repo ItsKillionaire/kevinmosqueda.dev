@@ -212,6 +212,7 @@ const services = [
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem; /* Add padding to prevent content from touching edges */
   }
 
   .modal-content {
@@ -220,6 +221,9 @@ const services = [
     width: 80%;
     max-width: 700px;
     position: relative;
+    background-color: transparent; /* Make modal content background transparent */
+    padding: 20px; /* Add some padding around the image */
+    border-radius: 8px; /* Slightly rounded corners */
   }
 
   #modalImage {
