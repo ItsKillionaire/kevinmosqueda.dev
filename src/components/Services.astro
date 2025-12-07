@@ -29,15 +29,16 @@ const services = [
     instructionImg: '/images/Immich_intructions.png',
   },
   {
-    name: 'Admin panel',
-    description: '',
+    name: 'Panel Admin',
+    description: 'Panel de administración para configurar servicios',
     url: 'https://dashboard.kevinmosqueda.dev',
-    icon: '/images/kirbysleeping.gif',
-    instructionImg: '',
+    icon: '/images/kirbysleeping.gif', // Use kirbysleeping.gif
+    instructionImg: '', // Admin panel might not need a mobile setup guide
   },
 ];
 ---
 <div class="services-container">
+  <a href="/" class="back-link">← Volver al Inicio</a>
   <h2>Servicios :3</h2>
   <div class="services-grid">
     {services.map(service => (
@@ -113,6 +114,19 @@ const services = [
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent-color);
   }
 
   h2 {
