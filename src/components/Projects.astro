@@ -1,8 +1,9 @@
 ---
 import ProjectCard from './ProjectCard.astro';
-import { getProjects } from '../data/projects.js';
+import pinnedProjects from '../data/pinned-projects.json';
 
-const allProjects = await getProjects();
+const allProjects = pinnedProjects.map(p => ({...p, repo: p.name.trim(), link: `https://github.com/${p.author}/${p.name}`, image: `https://opengraph.githubassets.com/1/${p.author}/${p.name}`, language: p.language, languageColor: p.languageColor}));
+
 const sortedProjects = allProjects.slice(0, 3);
 ---
 
