@@ -9,24 +9,28 @@ const services = [
     description: 'Peliculas y series',
     url: 'https://stream.kevinmosqueda.dev',
     icon: '/images/jellyfin.png',
+    instructionImg: '/images/Jellyfin_instructions.png',
   },
   {
     name: 'Jellyseerr',
     description: 'Pide las peliculas o series que quieras',
     url: 'https://pedidos.kevinmosqueda.dev',
     icon: '/images/jellyseerr.png',
+    instructionImg: '/images/Jellyseerr_instructions.jpg',
   },
   {
     name: 'Nextcloud',
     description: 'Respalda cualquier tipo de archivo',
     url: 'https://cloud.kevinmosqueda.dev',
     icon: '/images/nextcloud.png',
+    instructionImg: '/images/Nextcloud_intructions.png',
   },
   {
     name: 'Immich',
     description: 'Respalda fotos y videos',
     url: 'https://fotos.kevinmosqueda.dev',
     icon: immichIconContent,
+    instructionImg: '/images/Immich_intructions.png',
   },
 ];
 ---
@@ -34,22 +38,69 @@ const services = [
   <h2>Servicios :3</h2>
   <div class="services-grid">
     {services.map(service => (
-      <a href={service.url} target="_blank" rel="noopener noreferrer" class="service-card">
-        <div class="service-icon">
-          {service.name === 'Immich' ? (
-            <Fragment set:html={service.icon} />
-          ) : (
-            <img src={service.icon} alt={service.name} />
-          )}
+      <div class="service-card">
+        <a href={service.url} target="_blank" rel="noopener noreferrer" class="service-link">
+          <div class="service-icon">
+            {service.name === 'Immich' ? (
+              <Fragment set:html={service.icon} />
+            ) : (
+              <img src={service.icon} alt={service.name} />
+            )}
+          </div>
+          <div class="service-info">
+            <h3>{service.name}</h3>
+            <p>{service.description}</p>
+          </div>
+        </a>
+        <div class="service-actions">
+          <button class="setup-button" data-instruction-img={service.instructionImg}>
+            📱 Configurar en Celular
+          </button>
         </div>
-        <div class="service-info">
-          <h3>{service.name}</h3>
-          <p>{service.description}</p>
-        </div>
-      </a>
+      </div>
     ))}
   </div>
 </div>
+
+<div id="instructionModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <img id="modalImage" src="" alt="Instrucciones de Configuración">
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('instructionModal');
+  const modalImage = document.getElementById('modalImage');
+  const closeButton = document.querySelector('.close-button');
+  const setupButtons = document.querySelectorAll('.setup-button');
+
+  setupButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation(); // Prevent the main link from being triggered
+      const imageUrl = button.dataset.instructionImg;
+      modalImage.src = imageUrl;
+      modal.style.display = 'block';
+    });
+  });
+
+  closeButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.style.display === 'block') {
+      modal.style.display = 'none';
+    }
+  });
+</script>
 
 <style>
   .services-container {
@@ -68,7 +119,7 @@ const services = [
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
   }
 
@@ -83,10 +134,21 @@ const services = [
     text-decoration: none;
     color: var(--text-color);
     transition: transform 0.3s ease;
+    position: relative; /* Needed for z-index of button */
   }
 
   .service-card:hover {
     transform: translateY(-5px);
+  }
+
+  .service-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    width: 100%;
+    padding-bottom: 1rem; /* Space for the button */
   }
 
   .service-icon {
@@ -115,9 +177,80 @@ const services = [
     margin: 0;
   }
 
+  .service-actions {
+    margin-top: 1rem;
+    z-index: 10; /* Ensure button is clickable */
+  }
+
+  .setup-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .setup-button:hover {
+    background-color: darken(var(--accent-color), 10%);
+  }
+
+  /* Modal Styles */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    position: relative;
+  }
+
+  #modalImage {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .close-button {
+    position: absolute;
+    top: -30px; /* Position above the image */
+    right: 0;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .close-button:hover,
+  .close-button:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   @media (max-width: 768px) {
     .services-grid {
       grid-template-columns: 1fr;
+    }
+    .modal-content {
+      width: 95%;
     }
   }
 </style>
