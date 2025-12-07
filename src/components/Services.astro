@@ -1,3 +1,4 @@
+---
 const services = [
   {
     name: 'Jellyfin',
@@ -8,7 +9,7 @@ const services = [
   },
   {
     name: 'Jellyseerr',
-    description: 'Pide las peliculas y series que quieras',
+    description: 'Pide las peliculas o series que quieras',
     url: 'https://pedidos.kevinmosqueda.dev',
     icon: '/images/jellyseerr.png',
     instructionImg: '/images/Jellyseerr_instructions.jpg',
@@ -24,14 +25,14 @@ const services = [
     name: 'Immich',
     description: 'Respalda fotos y videos',
     url: 'https://fotos.kevinmosqueda.dev',
-    icon: immichIconContent,
+    icon: '/images/immich.svg', // Treated as regular image
     instructionImg: '/images/Immich_intructions.png',
   },
   {
     name: 'Panel Admin',
     description: 'Panel de administración para configurar servicios',
     url: 'https://dashboard.kevinmosqueda.dev',
-    icon: '/images/kirbystandby.gif', // Using kirbystandby.gif as requested
+    icon: '/images/kirbysleeping.gif', // Use kirbysleeping.gif
     instructionImg: '', // Admin panel might not need a mobile setup guide
   },
 ];
@@ -43,13 +44,11 @@ const services = [
       <div class="service-card">
         <a href={service.url} target="_blank" rel="noopener noreferrer" class="service-link">
           <div class="service-icon">
-            {service.name === 'Immich' ? (
-              <Fragment set:html={service.icon} />
-            ) : (service.icon.endsWith('.gif') ? (
+            {service.icon.endsWith('.gif') || service.icon.endsWith('.svg') ? ( // Handle SVG and GIF with img tag
               <img src={service.icon} alt={service.name} style="height: 100%; object-fit: contain;" />
             ) : (
               <img src={service.icon} alt={service.name} />
-            ))}
+            )}
           </div>
           <div class="service-info">
             <h3>{service.name}</h3>
@@ -68,7 +67,7 @@ const services = [
   </div>
 </div>
 
-<div id="instructionModal" class="modal" style="display: none !important;">
+<div id="instructionModal" class="modal">
   <div class="modal-content">
     <span class="close-button">&times;</span>
     <img id="modalImage" src="" alt="">
