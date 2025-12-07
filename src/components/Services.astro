@@ -1,4 +1,4 @@
----
+--- 
 import { readFile } from 'node:fs/promises';
 
 const immichIconContent = await readFile('./public/images/immich.svg', 'utf-8');
@@ -246,6 +246,12 @@ const services = [
     cursor: pointer;
   }
 
+  @media (min-width: 769px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 768px) {
     .services-grid {
       grid-template-columns: 1fr;
@@ -255,3 +261,4 @@ const services = [
     }
   }
 </style>
+
