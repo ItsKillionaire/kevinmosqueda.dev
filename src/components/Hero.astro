@@ -6,13 +6,31 @@
     <div class="title-container">
       <h1>HI, I'M<br/>KEVIN MOSQUEDA</h1>
     </div>
-    <div class="portrait-container">
+    <div class="portrait-container" id="portrait">
       <div class="background-text" aria-hidden="true">Synergy</div>
       <img src="/images/kevin-portrait.png" alt="Kevin Mosqueda portrait" class="portrait-img"/>
       <div class="accent-shape"></div>
     </div>
   </div>
 </section>
+<script>
+  const portrait = document.getElementById('portrait');
+  let clickCount = 0;
+  let clickTimer = null;
+
+  portrait.addEventListener('click', () => {
+    clickCount++;
+    if (clickCount === 1) {
+      clickTimer = setTimeout(() => {
+        clickCount = 0;
+      }, 500);
+    } else if (clickCount === 3) {
+      clearTimeout(clickTimer);
+      clickCount = 0;
+      window.location.href = '/services';
+    }
+  });
+</script>
 <style>
   .hero {
     position: relative;

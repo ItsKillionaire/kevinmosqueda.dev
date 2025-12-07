@@ -11,7 +11,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.11.0"
+    "astro": "^4.11.0",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "typescript": "^5.5.2"
