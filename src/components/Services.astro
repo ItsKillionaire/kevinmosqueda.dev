@@ -114,15 +114,18 @@ const services = [
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+    position: relative; /* Establish positioning context */
   }
 
   .back-link {
-    display: inline-block;
-    margin-bottom: 1rem;
+    position: absolute; /* Take out of flow */
+    top: 2rem;
+    left: 2rem;
     color: var(--text-color);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
+    z-index: 20; /* Ensure it's above other content */
   }
 
   .back-link:hover {
@@ -131,10 +134,21 @@ const services = [
 
   @media (max-width: 768px) {
     .back-link {
-      font-size: 1.1rem; /* Larger font size for mobile */
-      margin-bottom: 1.5rem; /* More space below */
-      padding: 0.5rem 0; /* Increase touch target */
+      top: 1rem;
+      left: 1rem;
+      font-size: 1.2rem; /* Larger font size for mobile */
+      padding: 0.5rem; /* Increase touch target */
     }
+    .services-container {
+      padding-top: 4rem; /* Add padding to container to prevent overlap */
+    }
+  }
+
+  /* ... existing styles ... */
+
+  .service-info p {
+    margin: 0;
+    font-size: 1.1rem; /* Increased font size */
   }
 
   h2 {
@@ -202,6 +216,7 @@ const services = [
 
   .service-info p {
     margin: 0;
+    font-size: 1.1rem;
   }
 
   .service-actions {
