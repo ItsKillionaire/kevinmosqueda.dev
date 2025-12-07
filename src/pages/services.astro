@@ -3,6 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Services from '../components/Services.astro';
 ---
 <BaseLayout title="Kevin Mosqueda | Services">
+  <head>
+    <style is:global>
+      html, body {
+        background-color: var(--bg-color) !important;
+      }
+    </style>
+  </head>
   <main>
     <div class="container">
       <Services />
