@@ -30,6 +30,7 @@ body {
   line-height: 1.6;
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
+  transition: background-color 0.3s ease; /* Add transition to background-color */
 }
 
 #projects-overlay.is-open .card {
