@@ -1,32 +1,32 @@
 ---
 import { readFile } from 'node:fs/promises';
 
-const immichIcon = await readFile('./public/images/immich.svg', 'utf-8');
+const immichIconContent = await readFile('./public/images/immich.svg', 'utf-8');
 
 const services = [
   {
     name: 'Jellyfin',
-    description: 'Un sistema de medios de software libre que te permite controlar, gestionar y transmitir tus medios.',
+    description: 'Peliculas y series',
     url: 'https://stream.kevinmosqueda.dev',
     icon: '/images/jellyfin.png',
   },
   {
     name: 'Jellyseerr',
-    description: 'Una aplicación de software libre y de código abierto para gestionar las solicitudes de tu biblioteca de medios.',
+    description: 'Pide las pelicula o serie que quieras',
     url: 'https://pedidos.kevinmosqueda.dev',
     icon: '/images/jellyseerr.png',
   },
   {
     name: 'Nextcloud',
-    description: 'Un conjunto de software cliente-servidor para crear y utilizar servicios de alojamiento de archivos.',
+    description: 'Respalda cualquier tipo de archivo',
     url: 'https://cloud.kevinmosqueda.dev',
     icon: '/images/nextcloud.png',
   },
   {
     name: 'Immich',
-    description: 'Una solución de copia de seguridad de fotos y vídeos autoalojada directamente desde tu teléfono móvil.',
+    description: 'Respalda tus fotos y videos, remplaza Google Photos',
     url: 'https://fotos.kevinmosqueda.dev',
-    icon: immichIcon,
+    icon: immichIconContent,
   },
 ];
 ---
@@ -36,12 +36,10 @@ const services = [
     {services.map(service => (
       <a href={service.url} target="_blank" rel="noopener noreferrer" class="service-card">
         <div class="service-icon">
-          {service.icon.endsWith ? (service.icon.endsWith('.svg') ? (
+          {service.name === 'Immich' ? (
             <Fragment set:html={service.icon} />
           ) : (
             <img src={service.icon} alt={service.name} />
-          )) : (
-            <Fragment set:html={service.icon} />
           )}
         </div>
         <div class="service-info">
