@@ -6,13 +6,15 @@ const services = [
     url: 'https://stream.kevinmosqueda.dev',
     icon: '/images/jellyfin.png',
     instructionImg: '/images/Jellyfin_instructions.png',
+    badgeUrl: 'https://status.kevinmosqueda.dev/api/badge/1/status?style=flat-square&color=00C853',
   },
   {
     name: 'Jellyseerr',
-    description: 'Pide las peliculas o series que quieras',
+    description: 'Pide las peliculas y series que quieras',
     url: 'https://pedidos.kevinmosqueda.dev',
     icon: '/images/jellyseerr.png',
     instructionImg: '/images/Jellyseerr_instructions.jpg',
+    badgeUrl: 'https://status.kevinmosqueda.dev/api/badge/2/status?style=flat-square&color=00C853',
   },
   {
     name: 'Nextcloud',
@@ -20,6 +22,7 @@ const services = [
     url: 'https://cloud.kevinmosqueda.dev',
     icon: '/images/nextcloud.png',
     instructionImg: '/images/Nextcloud_intructions.png',
+    badgeUrl: 'https://status.kevinmosqueda.dev/api/badge/3/status?style=flat-square&color=00C853',
   },
   {
     name: 'Immich',
@@ -27,6 +30,7 @@ const services = [
     url: 'https://fotos.kevinmosqueda.dev',
     icon: '/images/immich.svg', // Treated as regular image
     instructionImg: '/images/Immich_intructions.png',
+    badgeUrl: 'https://status.kevinmosqueda.dev/api/badge/4/status?style=flat-square&color=00C853',
   },
   {
     name: 'Admin panel',
@@ -34,10 +38,15 @@ const services = [
     url: 'https://dashboard.kevinmosqueda.dev',
     icon: '/images/kirbystandby.gif', // Use kirbystandby.gif
     instructionImg: '', // Admin panel might not need a mobile setup guide
+    badgeUrl: 'https://status.kevinmosqueda.dev/api/badge/5/status?style=flat-square&color=00C853',
   },
 ];
 ---
 <div class="services-container">
+  <a href="https://status.kevinmosqueda.dev" target="_blank" class="global-status">
+    <span class="pulse-dot"></span>
+    Estado del Sistema
+  </a>
   <a href="/" class="back-link">← Volver al Inicio</a>
   <h2>Servicios :3</h2>
   <div class="services-grid">
@@ -53,6 +62,9 @@ const services = [
           </div>
           <div class="service-info">
             <h3>{service.name}</h3>
+            {service.badgeUrl && (
+              <img src={service.badgeUrl} class="status-badge" alt="Status" />
+            )}
             {service.description && <p>{service.description}</p>}
           </div>
         </a>
@@ -131,6 +143,68 @@ const services = [
   .back-link:hover {
     color: var(--accent-color);
   }
+  
+  /* Global Status Button */
+  .global-status {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    text-decoration: none;
+    color: var(--text-color); /* Match theme */
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    background: var(--overlay-bg-color); /* Match theme */
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.2s, transform 0.2s;
+    z-index: 20;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .global-status:hover {
+    background: rgba(255, 255, 255, 0.9); /* Slightly lighter/different on hover */
+    transform: translateY(-2px);
+  }
+
+  /* The Glowing Green Dot */
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #00C853; /* Bright Green */
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 0 rgba(0, 200, 83, 0.4);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(0, 200, 83, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(0, 200, 83, 0);
+    }
+  }
+
+  /* Status Badge in Card */
+  .status-badge {
+    height: 20px;       /* Keep it subtle */
+    margin-top: 4px;    /* Space from title */
+    margin-bottom: 8px; /* Space from description */
+    border-radius: 6px; /* Smooth corners to match your UI */
+    opacity: 0.9;       /* Slightly transparent to blend in */
+    transition: transform 0.2s ease, opacity 0.2s;
+  }
+
+  .status-badge:hover {
+    transform: scale(1.05); /* Tiny pop effect on hover */
+    opacity: 1;
+  }
 
   @media (max-width: 768px) {
     .back-link {
@@ -139,8 +213,12 @@ const services = [
       font-size: 1.2rem; /* Larger font size for mobile */
       padding: 0.5rem; /* Increase touch target */
     }
+    .global-status {
+      top: 1rem;
+      right: 1rem;
+    }
     .services-container {
-      padding-top: 4rem; /* Add padding to container to prevent overlap */
+      padding-top: 5rem; /* Add padding to container to prevent overlap */
     }
   }
 
@@ -193,8 +271,8 @@ const services = [
   }
 
   .service-icon {
-    width: 64px;
-    height: 64px;
+    width: 72px; /* Increased size */
+    height: 72px; /* Increased size */
     margin-bottom: 1rem;
   }
 
@@ -202,6 +280,11 @@ const services = [
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: transform 0.3s ease; /* Smooth hover effect */
+  }
+
+  .service-card:hover .service-icon img {
+    transform: scale(1.1); /* Slight zoom on hover */
   }
 
   .service-icon svg {
