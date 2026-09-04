@@ -2,28 +2,23 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Services from '../components/Services.astro';
 ---
-<BaseLayout title="Kevin Mosqueda | Services">
-  <head>
-    <style is:global>
-      html, body {
-        background-color: var(--bg-color) !important;
-      }
-    </style>
-  </head>
-  <main>
-    <div class="container">
+<BaseLayout title="Kevin Mosqueda | Servicios">
+  <main class="min-h-screen bg-[#F2E8DE]">
+    <div class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-6xl font-bold text-[#1D1D1B] mb-4 font-serif">Servicios :3</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Usa las credenciales proporcionadas para acceder a las aplicaciones.
+        </p>
+      </div>
+      
       <Services />
     </div>
   </main>
 </BaseLayout>
 
-<style>
-  .container {
-    display: grid;
-    grid-template-columns: 1fr;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    gap: 2rem;
+<style is:global>
+  body {
+    background-color: #F2E8DE !important;
   }
 </style>
